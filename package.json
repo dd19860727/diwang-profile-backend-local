@@ -1,0 +1,36 @@
+{
+  "name": "diwang-profile-server",
+  "version": "1.0.0",
+  "description": "A Node.js Restful Api for Di Wang's personal resume",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node-dev ./bin/www"
+  },
+  "keywords": [
+    "diwang",
+    "profile",
+    "restful",
+    "backend"
+  ],
+  "author": "di wang",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.16.2",
+    "express-validator": "^4.3.0",
+    "http-errors": "^1.7.2",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.9.1",
+    "swagger-jsdoc": "^3.2.9",
+    "swagger-ui-express": "^4.0.6"
+  },
+  "devDependencies": {
+    "dotenv": "^8.0.0"
+  }
+}
