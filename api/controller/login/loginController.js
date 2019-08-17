@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const authController = require('../auth/authController');
 
 exports.login = (req, res) => {
     res.render('login',  {success: req.session.success, errors: req.session.errors });
@@ -8,9 +9,7 @@ exports.login = (req, res) => {
 exports.user_submit = (req, res) => {
 
     checkInput(req);
-
     let errors = req.validationErrors();
-
     if(errors){
         redirectToLoginPage(req, res, errors);
     }
@@ -38,12 +37,8 @@ function redirectToLoginPage(req, res, errors){
 function redirectToSwaggerUI(req, res){
     let swaggerAddress = '/api/swagger';
 
-    let userInput = {
-        userInputName:req.body.username,
-        userInputPassword:req.body.password
-    }
-
-    const token = jwt.sign({userInput}, process.env.SECRET_KEY,{expiresIn: process.env.EXPIRE_TIME});
+    const token = authController.create_token(req, res);
+    
     req.session.success = true;
     req.session.token = token;
     res.redirect(swaggerAddress);

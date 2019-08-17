@@ -47,7 +47,40 @@
             "description": "successful operation"
           },
           "500": {
-            "description": "Please login to swaggerUI to get token"
+            "description": "please login to swaggerUI to get token"
+          }
+        }
+      }
+    },
+
+    "/create-token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Creates a jwt token for login authentication ",
+        "description": "Sends username and password to generate new jwt token",
+        "operationId": "create-token",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "add username and password to create a token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/create-token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "fail to generate token"
           }
         }
       }
@@ -136,6 +169,20 @@
       },
       "xml": {
         "name": "Order"
+      }
+    },
+    "create-token": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Authentication"
       }
     }
   },

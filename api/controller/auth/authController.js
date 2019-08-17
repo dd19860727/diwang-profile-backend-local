@@ -43,3 +43,22 @@ exports.jwt_verify = (req, res, resObj) => {
         }
     });
 }
+
+exports.create_token = (req, res) => {
+
+    let userInput = {
+        username:req.body.username,
+        password:req.body.password
+    }
+    const token = jwt.sign({userInput}, process.env.SECRET_KEY,{expiresIn: process.env.EXPIRE_TIME});
+    
+    return token;
+}
+
+exports.create_token_api = (req, res) => {
+    const token = this.create_token(req, res);
+    
+    res.status(200).json({
+        token: 'Bearer ' + token
+    });
+}

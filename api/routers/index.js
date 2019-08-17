@@ -1,5 +1,5 @@
 const loginRouter = require("./login/login");
-const apiRouter = require("./test/test");
+const apiRouter = require("./api/apis");
 const swaggerRouter = require("./swagger/swagger");
 //const redirectToSwagger = require("./swagger/redirectToSwagger");
 const redirectToLogin = require("./login/redirectToLogin");
