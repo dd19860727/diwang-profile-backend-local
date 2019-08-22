@@ -1,5 +1,5 @@
-const test = require("../models/test");
-const jwt = require("jsonwebtoken");
+const Test = require("../models/test");
+const mongoose = require('mongoose');
 const authController = require('./auth/authController');
 
 exports.test_get_all = (req, res) => {
@@ -8,13 +8,28 @@ exports.test_get_all = (req, res) => {
 };
 
 exports.test_post = (req, res) => {
-    const test = {
+    const test = new Test({
+        _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
-        id: req.body.id
-    };
+        password:req.body.password
+    });
+    test.save().then(result =>{
+        console.log(result);
+    }).catch(err => console.log(err));
     res.status(200).json({
         message: "Post Successfully",
         createPost: test
     });
 };
 
+
+exports.test_get_by_id = (req, res) =>{
+    const id = req.params.id;
+    console.log("id", id);
+    Test.findById(id).exec().then(doc =>{
+        console.log(doc);
+        res.status(200).json(doc);
+    }).catch(err => {
+        res.status(500).json({error:err});
+    });
+};

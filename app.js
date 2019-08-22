@@ -3,6 +3,7 @@ const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 const dotenv = require('dotenv');
 const app = express();
+const mongoose = require('mongoose');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -14,8 +15,12 @@ const cors = require('cors');
 const { loadErrors } = require('./api/middleware');
 const {loadCorsConfig} = require('./api/middleware');
 
-const root = '/api';
-const views = 'api/views';
+//Global Variable Config
+dotenv.config({path:__dirname + '/global.env'});
+
+const root = process.env.ROOT;
+const views = process.env.VIEWS;
+
 const {
        addResHeader,
        redirectToLogin, 
@@ -23,8 +28,9 @@ const {
        apiRouter, 
        swaggerRouter} = require("./api/routers");
 
-//Global Variable Config
-dotenv.config({path:__dirname + '/global.env'});
+
+//Connect to mongoDB
+mongoose.connect(process.env.MONGO_DB_URL, {useNewUrlParser: true});
 
 //cross-domain
 app.use(cors(loadCorsConfig));
