@@ -1,7 +1,7 @@
 exports.log_error = (error, req, res, next) =>{
     console.log(error.stack);
     next(error);
-}
+};
 
 exports.not_found_error = (req, res, next) => {
     const error = new Error("Not found");
@@ -15,7 +15,7 @@ exports.client_error_handler = (error, req, res, next) =>{
       } else {
         next(error);
       }
-}
+};
 
 exports.error_handler = (error, req, res, next) => {
 
@@ -33,3 +33,7 @@ exports.error_handler = (error, req, res, next) => {
       }
     });
 };
+
+exports.db_error_handler = (res, err) =>{
+  res.status(500).json({error:err});
+}
