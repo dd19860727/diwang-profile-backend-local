@@ -149,14 +149,83 @@
       }
     },
 
-    "/{testId}": {
+    "/getId/{testId}": {
       "get": {
         "tags": [
           "store"
         ],
         "summary": "Place an order for a pet",
         "description": "",
-        "operationId": "testId",
+        "operationId": "getTestId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "testId",
+            "in": "path",
+            "description": "ID of test post",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "Invalid operation"
+          }
+        }
+      }
+    },
+
+    "/updateId/{testId}": {
+      "patch": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Place an order for a pet",
+        "description": "",
+        "operationId": "patchTestId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "testId",
+            "in": "path",
+            "description": "ID of test post",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "order placed for purchasing the pet",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Testpost"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "Invalid operation"
+          }
+        }
+      }
+    },
+
+    "/deleteId/{testId}": {
+      "delete": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Place an order for a pet",
+        "description": "",
+        "operationId": "deleteTestId",
         "produces": [
           "application/json"
         ],
